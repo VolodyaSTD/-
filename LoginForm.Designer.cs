@@ -41,6 +41,7 @@
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Font = new Font("Lucida Console", 11F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label1.Location = new Point(44, 36);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(296, 82);
             label1.TabIndex = 0;
@@ -50,22 +51,30 @@
             // loginwindow
             // 
             loginwindow.Location = new Point(91, 151);
+            loginwindow.Margin = new Padding(2);
             loginwindow.Name = "loginwindow";
+            loginwindow.PlaceholderText = "Логин";
             loginwindow.Size = new Size(215, 31);
             loginwindow.TabIndex = 1;
+            loginwindow.TextChanged += loginwindow_TextChanged;
             // 
             // passwordwindow
             // 
             passwordwindow.Location = new Point(91, 236);
+            passwordwindow.Margin = new Padding(2);
             passwordwindow.Name = "passwordwindow";
+            passwordwindow.PlaceholderText = "Пароль";
             passwordwindow.Size = new Size(215, 31);
             passwordwindow.TabIndex = 2;
+            passwordwindow.UseSystemPasswordChar = true;
+            passwordwindow.TextChanged += passwordwindow_TextChanged;
             // 
             // LoginButton
             // 
             LoginButton.BackColor = Color.PapayaWhip;
             LoginButton.Font = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             LoginButton.Location = new Point(115, 308);
+            LoginButton.Margin = new Padding(2);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(160, 72);
             LoginButton.TabIndex = 3;
@@ -78,13 +87,15 @@
             EnterBotton.BackColor = Color.PapayaWhip;
             EnterBotton.Font = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EnterBotton.Location = new Point(91, 425);
+            EnterBotton.Margin = new Padding(2);
             EnterBotton.Name = "EnterBotton";
             EnterBotton.Size = new Size(215, 68);
             EnterBotton.TabIndex = 4;
             EnterBotton.Text = "Вход";
             EnterBotton.UseVisualStyleBackColor = false;
+            EnterBotton.Click += EnterBotton_Click;
             // 
-            // login
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -95,7 +106,8 @@
             Controls.Add(passwordwindow);
             Controls.Add(loginwindow);
             Controls.Add(label1);
-            Name = "login";
+            Margin = new Padding(2);
+            Name = "LoginForm";
             Text = "login";
             ResumeLayout(false);
             PerformLayout();

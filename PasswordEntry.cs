@@ -4,10 +4,14 @@ using System.Text;
 
 namespace МенеджнрПаролей
 {
-    public class User
+    public class PasswordEntry
     {
+        public string Site {  get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public List<PasswordEntry> Passwords { get; set; } = new List<PasswordEntry>();
+        public override string ToString()
+        {
+            return Site + " " + Login;  
+        }
     }
 }
