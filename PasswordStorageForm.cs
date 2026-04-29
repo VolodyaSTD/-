@@ -14,20 +14,5 @@ namespace МенеджнрПаролей
         {
             InitializeComponent();
         }
-
-        private void PasswordStorageForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
