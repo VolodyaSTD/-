@@ -6,43 +6,12 @@ namespace МенеджнрПаролей
 {
     public partial class LoginForm : Form
     {
-        private string filepath = "users.json";
-
-
         public LoginForm()
         {
             InitializeComponent();
         }
-
-        private List<User> LoadUsers()
-        {
-            if (!File.Exists(filepath))
-            {
-                return new List<User>();
-            }
-            string json = File.ReadAllText(filepath);
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                return new List<User>();
-            }
-            return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
-        }
-
-        private void SaveUsers(List<User> users)
-        {
-            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filepath, json);
-        }
-
-        private void loginwindow_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void passwordwindow_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void loginwindow_TextChanged(object sender, EventArgs e) { }
+        private void passwordwindow_TextChanged(object sender, EventArgs e) { }
 
         public void LoginButton_Click(object sender, EventArgs e)
         {
@@ -54,34 +23,28 @@ namespace МенеджнрПаролей
                 MessageBox.Show("Заполните пожалуйста все поля");
                 return;
             }
-            List<User> users = LoadUsers();
+            List<User> users = UserStorage.LoadUsers();
 
-            User foundUser = null;
-
-            User existingUser = null;
-            foreach(User oneuser in users)
+            foreach (User u in users)
             {
-                if (oneuser.Login == login)
+                if(u.Login == login)
                 {
-                    existingUser = oneuser;
-                    break;
+                    MessageBox.Show("Пользователь с таким логином уже существует");
+                    return;
                 }
             }
-
-            if (existingUser != null)
-            {
-                MessageBox.Show("Пользователь с таким логином уже существует");
-                return;
-            }
+            string salt = SecurityHelper.GenerateSalt();
+            string hash = SecurityHelper.HashPassword(password, salt);
 
             User newUser = new User();
             newUser.Login = login;
-            newUser.Password = password;
+            newUser.Salt = salt;
+            newUser.PasswordHash = hash;
 
             users.Add(newUser);
-            SaveUsers(users);
+            UserStorage.SaveUsers(users);
 
-            MessageBox.Show("Пользователь зарегистрирован!");
+            MessageBox.Show("Пользователь зарегестрирован!");
         }
 
         private void EnterBotton_Click(object sender, EventArgs e)
@@ -91,19 +54,18 @@ namespace МенеджнрПаролей
 
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("ВВедите логин и пароль");
+                MessageBox.Show("Введите логин и пароль");
                 return;
             }
-            List<User> users = LoadUsers();
+            List<User> users = UserStorage.LoadUsers();
 
             User foundUser = null;
-            foreach(User oneuser in users)
+            foreach(User u in users)
             {
-                if(oneuser.Login == login && oneuser.Password == password)
+                if (u.Login == login && SecurityHelper.VerifyPassword(password, u.Salt, u.PasswordHash))
                 {
-                    foundUser = oneuser;
+                    foundUser = u;
                     break;
-               
                 }
             }
             if (foundUser == null)
@@ -113,14 +75,12 @@ namespace МенеджнрПаролей
             }
             //MessageBox.Show("Вход выполнен успешно!");
 
-
-            PasswordStorageForm storageForm = new PasswordStorageForm();
+            PasswordStorageForm storageForm = new PasswordStorageForm(foundUser, password);
             //..проблема висящего процесса
             storageForm.FormClosed += (s, args) =>
             {
                 this.Close();
             };
-
 
             this.Hide();
             storageForm.Show();
