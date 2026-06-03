@@ -34,7 +34,7 @@ namespace МенеджнрПаролей
             return listBoxPasswords.SelectedItem as PasswordEntry;
         }
         private void ClearFields()
-        {
+        { 
             textBoxSite.Text = "";
             textBoxLogin.Text = "";
             textBoxPassword.Text = "";
@@ -193,6 +193,11 @@ namespace МенеджнрПаролей
                     listBoxPasswords.Items.Add(entry);
                 }
             }
+        }
+        private void buttonFieldclear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+            listBoxPasswords.ClearSelected();
         }
     }
 }

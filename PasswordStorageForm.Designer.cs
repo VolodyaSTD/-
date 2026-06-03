@@ -47,6 +47,7 @@
             buttonGenerate = new Button();
             buttonEdit = new Button();
             buttonDelete = new Button();
+            buttonFieldclear = new Button();
             SuspendLayout();
             // 
             // labelTitle
@@ -79,10 +80,9 @@
             textSearch.Location = new Point(49, 170);
             textSearch.Margin = new Padding(4);
             textSearch.Name = "textSearch";
-            textSearch.ReadOnly = true;
-            textSearch.Size = new Size(500, 31);
+            textSearch.PlaceholderText = "Поиск по сайту или логину...";
+            textSearch.Size = new Size(363, 31);
             textSearch.TabIndex = 2;
-            textSearch.Text = "Поиск по сайту или логину...";
             textSearch.TextChanged += textSearch_TextChanged;
             // 
             // buttonAdd
@@ -104,14 +104,14 @@
             listBoxPasswords.Location = new Point(49, 259);
             listBoxPasswords.Margin = new Padding(4);
             listBoxPasswords.Name = "listBoxPasswords";
-            listBoxPasswords.Size = new Size(363, 454);
+            listBoxPasswords.Size = new Size(363, 504);
             listBoxPasswords.TabIndex = 4;
             listBoxPasswords.SelectedIndexChanged += listBoxPasswords_SelectedIndexChanged;
             // 
             // labelSite
             // 
             labelSite.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelSite.Location = new Point(481, 289);
+            labelSite.Location = new Point(479, 259);
             labelSite.Margin = new Padding(4, 0, 4, 0);
             labelSite.Name = "labelSite";
             labelSite.Size = new Size(109, 45);
@@ -121,7 +121,7 @@
             // labelLogin
             // 
             labelLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelLogin.Location = new Point(481, 361);
+            labelLogin.Location = new Point(479, 331);
             labelLogin.Margin = new Padding(4, 0, 4, 0);
             labelLogin.Name = "labelLogin";
             labelLogin.Size = new Size(109, 45);
@@ -131,7 +131,7 @@
             // labelPassword
             // 
             labelPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelPassword.Location = new Point(481, 436);
+            labelPassword.Location = new Point(479, 406);
             labelPassword.Margin = new Padding(4, 0, 4, 0);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(126, 45);
@@ -141,7 +141,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(714, 309);
+            label1.Location = new Point(712, 279);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(0, 25);
@@ -149,7 +149,7 @@
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(481, 551);
+            progressBar.Location = new Point(479, 521);
             progressBar.Margin = new Padding(4);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(475, 36);
@@ -158,7 +158,7 @@
             // labelSafety
             // 
             labelSafety.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelSafety.Location = new Point(481, 509);
+            labelSafety.Location = new Point(479, 479);
             labelSafety.Margin = new Padding(4, 0, 4, 0);
             labelSafety.Name = "labelSafety";
             labelSafety.Size = new Size(176, 39);
@@ -167,7 +167,7 @@
             // 
             // textBoxSite
             // 
-            textBoxSite.Location = new Point(620, 289);
+            textBoxSite.Location = new Point(618, 259);
             textBoxSite.Margin = new Padding(4);
             textBoxSite.Name = "textBoxSite";
             textBoxSite.Size = new Size(310, 31);
@@ -175,7 +175,7 @@
             // 
             // textBoxLogin
             // 
-            textBoxLogin.Location = new Point(620, 361);
+            textBoxLogin.Location = new Point(618, 331);
             textBoxLogin.Margin = new Padding(4);
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(310, 31);
@@ -183,7 +183,7 @@
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(620, 436);
+            textBoxPassword.Location = new Point(618, 406);
             textBoxPassword.Margin = new Padding(4);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(310, 31);
@@ -194,10 +194,10 @@
             // 
             buttonShow.BackColor = Color.NavajoWhite;
             buttonShow.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            buttonShow.Location = new Point(460, 624);
+            buttonShow.Location = new Point(463, 602);
             buttonShow.Margin = new Padding(4);
             buttonShow.Name = "buttonShow";
-            buttonShow.Size = new Size(148, 61);
+            buttonShow.Size = new Size(148, 78);
             buttonShow.TabIndex = 14;
             buttonShow.Text = "Показать";
             buttonShow.UseVisualStyleBackColor = false;
@@ -207,12 +207,12 @@
             // 
             buttonCopy.BackColor = Color.NavajoWhite;
             buttonCopy.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            buttonCopy.Location = new Point(646, 624);
+            buttonCopy.Location = new Point(649, 602);
             buttonCopy.Margin = new Padding(4);
             buttonCopy.Name = "buttonCopy";
-            buttonCopy.Size = new Size(148, 61);
+            buttonCopy.Size = new Size(148, 78);
             buttonCopy.TabIndex = 15;
-            buttonCopy.Text = "Копировать";
+            buttonCopy.Text = "Копировать пароль";
             buttonCopy.UseVisualStyleBackColor = false;
             buttonCopy.Click += buttonCopy_Click;
             // 
@@ -220,10 +220,10 @@
             // 
             buttonGenerate.BackColor = Color.NavajoWhite;
             buttonGenerate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            buttonGenerate.Location = new Point(821, 624);
+            buttonGenerate.Location = new Point(824, 602);
             buttonGenerate.Margin = new Padding(4);
             buttonGenerate.Name = "buttonGenerate";
-            buttonGenerate.Size = new Size(181, 61);
+            buttonGenerate.Size = new Size(181, 78);
             buttonGenerate.TabIndex = 16;
             buttonGenerate.Text = "Сгенерировать";
             buttonGenerate.UseVisualStyleBackColor = false;
@@ -233,7 +233,7 @@
             // 
             buttonEdit.BackColor = Color.NavajoWhite;
             buttonEdit.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            buttonEdit.Location = new Point(460, 719);
+            buttonEdit.Location = new Point(460, 702);
             buttonEdit.Margin = new Padding(4);
             buttonEdit.Name = "buttonEdit";
             buttonEdit.Size = new Size(254, 61);
@@ -246,7 +246,7 @@
             // 
             buttonDelete.BackColor = Color.NavajoWhite;
             buttonDelete.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            buttonDelete.Location = new Point(746, 719);
+            buttonDelete.Location = new Point(746, 702);
             buttonDelete.Margin = new Padding(4);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(254, 61);
@@ -255,12 +255,26 @@
             buttonDelete.UseVisualStyleBackColor = false;
             buttonDelete.Click += buttonDelete_Click;
             // 
+            // buttonFieldclear
+            // 
+            buttonFieldclear.BackColor = Color.NavajoWhite;
+            buttonFieldclear.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonFieldclear.Location = new Point(476, 158);
+            buttonFieldclear.Margin = new Padding(4);
+            buttonFieldclear.Name = "buttonFieldclear";
+            buttonFieldclear.Size = new Size(181, 58);
+            buttonFieldclear.TabIndex = 19;
+            buttonFieldclear.Text = "очистисть поля";
+            buttonFieldclear.UseVisualStyleBackColor = false;
+            buttonFieldclear.Click += buttonFieldclear_Click;
+            // 
             // PasswordStorageForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(1018, 795);
+            Controls.Add(buttonFieldclear);
             Controls.Add(buttonDelete);
             Controls.Add(buttonEdit);
             Controls.Add(buttonGenerate);
@@ -308,5 +322,6 @@
         private Button buttonGenerate;
         private Button buttonEdit;
         private Button buttonDelete;
+        private Button buttonFieldclear;
     }
 }
