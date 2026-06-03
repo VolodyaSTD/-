@@ -29,7 +29,7 @@ namespace МенеджнрПаролей
                 listBoxPasswords.Items.Add(entry);
             }
         }
-        private PasswordEntry GetSelected()
+        private PasswordEntry? GetSelected()
         {
             return listBoxPasswords.SelectedItem as PasswordEntry;
         }
@@ -119,12 +119,14 @@ namespace МенеджнрПаролей
                 "Подтверждение",
                 MessageBoxButtons.YesNo);
 
-            if (answer == DialogResult.Yes) return;
+            if (answer == DialogResult.Yes)
+            {
 
-            currentUser.Passwords.Remove(entry);
-            SaveChanges();
-            RefreshList();
-            ClearFields();
+                currentUser.Passwords.Remove(entry);
+                SaveChanges();
+                RefreshList();
+                ClearFields();
+            }
         }
 
         private void buttonShow_Click(object sender, EventArgs e)
